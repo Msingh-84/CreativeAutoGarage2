@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Creative Auto Garage - Booking</title>
-  <link rel="stylesheet" href="styles.css"> <!-- If you have a CSS file -->
+  <link rel="stylesheet" href="styles.css">
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -120,7 +120,6 @@
   </div>
 
   <script>
-    // Show file name when image is selected
     document.getElementById('vehiclePhoto').addEventListener('change', function () {
       const fileNameSpan = document.getElementById('fileNameDisplay');
       if (this.files && this.files.length > 0) {
@@ -130,13 +129,11 @@
       }
     });
 
-    // Handle form submission
     document.getElementById('bookingForm').addEventListener('submit', async function (e) {
       e.preventDefault();
 
       const formData = new FormData(this);
-
-      const response = await fetch('/submit-booking', {
+      const response = await fetch('https://creativeautogarage-backend.onrender.com/submit-booking', {
         method: 'POST',
         body: formData
       });
