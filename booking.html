@@ -159,6 +159,11 @@
         if (result.success) {
           document.getElementById('formSection').style.display = 'none';
           document.getElementById('confirmationScreen').style.display = 'block';
+
+            setTimeout(() => {
+            window.location.href = 'index.html'; // or your homepage route
+          }, 4000); // redirects after 4 seconds
+
         } else {
           alert('Something went wrong. Please try again.');
         }
