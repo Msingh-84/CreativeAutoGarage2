@@ -67,8 +67,9 @@
                 <input type="time" name="time" id="time" required />
               </div>
               <div class="col-12">
-                <label for="vehiclePhoto">Upload Vehicle Photo <span class="required">*</span></label>
-                <input type="file" id="vehiclePhoto" name="vehiclePhoto" accept="image/*" required>
+                <label for="vehicleImage">Upload Vehicle Photo <span class="required">*</span></label>
+                <input type="file" id="vehicleImage" name="vehicleImage" accept="image/*" required>
+                <span id="fileNameDisplay" style="margin-left: 10px; font-weight: 500;"></span>
 
               </div>
               <div class="col-12">
@@ -110,5 +111,16 @@
   <script src="assets/js/breakpoints.min.js"></script>
   <script src="assets/js/util.js"></script>
   <script src="assets/js/main.js"></script>
+  <script>
+  document.getElementById('vehicleImage').addEventListener('change', function () {
+    const fileNameSpan = document.getElementById('fileNameDisplay');
+    if (this.files && this.files.length > 0) {
+      fileNameSpan.textContent = this.files[0].name;
+    } else {
+      fileNameSpan.textContent = '';
+    }
+  });
+</script>
+
 </body>
 </html>
