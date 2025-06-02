@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard - Creative Auto Garage</title>
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <style>
+    .dashboard-container {
+      max-width: 1000px;
+      margin: 60px auto;
+      padding: 30px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #081545;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 12px;
+      text-align: left;
+    }
+    th {
+      background-color: #081545;
+      color: #fff;
+    }
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+    img {
+      max-width: 120px;
+    }
+  </style>
+</head>
+<body class="is-preload">
+  <div id="page-wrapper">
+    <header id="header">
+      <h1><a href="index.html">Creative Auto Garage</a></h1>
+    </header>
+
+    <section class="dashboard-container">
+      <h2>Admin Dashboard - View Bookings</h2>
+      <table id="bookingsTable">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Service</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Vehicle Info</th>
+            <th>Notes</th>
+            <th>Photo</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+  </div>
+
+  <script>
+    fetch('https://creativeautogarage-backend.onrender.com/bookings')
+      .then(res => res.json())
+      .then(data => {
+        const tbody = document.querySelector('#bookingsTable tbody');
+        data.forEach(booking => {
+          const row = document.createElement('tr');
+          row.innerHTML = `
+            <td>${booking.fullName}</td>
+            <td>${booking.email}</td>
+            <td>${booking.service}</td>
+            <td>${booking.preferredDate}</td>
+            <td>${booking.preferredTime || ''}</td>
+            <td>${booking.vehicleInfo}</td>
+            <td>${booking.notes}</td>
+            <td>${booking.imagePath ? `<img src="https://creativeautogarage-backend.onrender.com/${booking.imagePath}" alt="Vehicle Photo" />` : 'N/A'}</td>
+          `;
+          tbody.appendChild(row);
+        });
+      })
+      .catch(err => console.error('Error loading bookings:', err));
+  </script>
+</body>
+</html>
