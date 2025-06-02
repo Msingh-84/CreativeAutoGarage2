@@ -6,30 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
   <link rel="stylesheet" href="assets/css/main.css" />
   <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-  <style>
-    .spotlight form {
-      background: #111;
-      padding: 2em;
-      border-radius: 10px;
-      color: #fff;
-    }
-    .spotlight label {
-      color: #ffd000;
-      display: block;
-      margin-top: 1em;
-      font-weight: bold;
-    }
-    .spotlight input, .spotlight textarea, .spotlight select {
-      background: #222;
-      border: 1px solid #555;
-      color: #fff;
-    }
-    .spotlight input[type="submit"] {
-      background: #ffd000;
-      color: #000;
-      border: none;
-    }
-  </style>
 </head>
 <body class="landing is-preload">
   <div id="page-wrapper">
@@ -46,8 +22,8 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="services.html">Services</a></li>
                 <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="contact.html">Contact</a></li>
                 <li><a href="booking.html">Booking</a></li>
+                <li><a href="contact.html">Contact</a></li>
               </ul>
             </div>
           </li>
@@ -56,38 +32,69 @@
     </header>
 
     <!-- Booking Section -->
-    <section class="spotlight style1">
-      <div class="content">
+    <section class="wrapper style1 special fade-up">
+      <div class="inner">
         <header class="major">
-          <h2>Book a Service</h2>
-          <p>Fill out the form below to request a vehicle wrap, ceramic coating, detailing, or interior upgrade. We'll follow up with a quote and schedule options.</p>
+          <h2>Book Your Appointment</h2>
+          <p>Provide your vehicle details and service preferences below. We'll get back to you with confirmation and pricing.</p>
         </header>
         <form method="post" action="#" enctype="multipart/form-data">
-          <label for="name">Full Name</label>
-          <input type="text" id="name" name="name" required />
+          <div class="row gtr-uniform">
 
-          <label for="email">Email Address</label>
-          <input type="email" id="email" name="email" required />
+            <div class="col-6 col-12-xsmall">
+              <label for="name">Full Name</label>
+              <input type="text" name="name" id="name" placeholder="Your full name" required />
+            </div>
 
-          <label for="phone">Phone Number</label>
-          <input type="tel" id="phone" name="phone" required />
+            <div class="col-6 col-12-xsmall">
+              <label for="email">Email Address</label>
+              <input type="email" name="email" id="email" placeholder="your@email.com" required />
+            </div>
 
-          <label for="service">Select a Service</label>
-          <select id="service" name="service" required>
-            <option value="">-- Please choose an option --</option>
-            <option value="wrap">Vehicle Wrap</option>
-            <option value="ceramic">Ceramic Coating</option>
-            <option value="detailing">Detailing</option>
-            <option value="upholstery">Upholstery/Interior</option>
-          </select>
+            <div class="col-12">
+              <label for="service">Select Service</label>
+              <select name="service" id="service" required>
+                <option value="">- Choose a Service -</option>
+                <option value="wraps">Vehicle Wraps</option>
+                <option value="ceramic">Ceramic Coating</option>
+                <option value="detailing">Detailing</option>
+                <option value="upholstery">Upholstery</option>
+              </select>
+            </div>
 
-          <label for="details">Vehicle Make/Model & Additional Details</label>
-          <textarea id="details" name="details" rows="4" placeholder="E.g., 2021 Honda Civic, matte black wrap, etc."></textarea>
+            <div class="col-6 col-12-xsmall">
+              <label for="date">Preferred Date</label>
+              <input type="date" name="date" id="date" required />
+            </div>
 
-          <label for="image">Upload Vehicle Photo</label>
-          <input type="file" id="image" name="image" accept="image/*" required />
+            <div class="col-6 col-12-xsmall">
+              <label for="time">Preferred Time</label>
+              <input type="time" name="time" id="time" required />
+            </div>
 
-          <input type="submit" value="Submit Booking Request" />
+            <div class="col-12">
+              <label for="vehicle">Vehicle Details</label>
+              <textarea name="vehicle" id="vehicle" placeholder="Make, model, year, and color" rows="4" required></textarea>
+            </div>
+
+            <div class="col-12">
+              <label for="upload">Upload Vehicle Image</label>
+              <input type="file" name="upload" id="upload" accept="image/*" required />
+            </div>
+
+            <div class="col-12">
+              <label for="notes">Additional Notes</label>
+              <textarea name="notes" id="notes" placeholder="Any other instructions or requests?" rows="4"></textarea>
+            </div>
+
+            <div class="col-12">
+              <ul class="actions">
+                <li><input type="submit" value="Submit Booking" class="primary" /></li>
+                <li><input type="reset" value="Clear" /></li>
+              </ul>
+            </div>
+
+          </div>
         </form>
       </div>
     </section>
