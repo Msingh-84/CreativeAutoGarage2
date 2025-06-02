@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-  <title>Booking - Creative Auto Garage</title>
+  <title>Book a Service - Creative Auto Garage</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
   <link rel="stylesheet" href="assets/css/main.css" />
@@ -11,7 +11,7 @@
   <div id="page-wrapper">
 
     <!-- Header -->
-    <header id="header" class="alt">
+    <header id="header">
       <h1><a href="index.html">Creative Auto Garage</a></h1>
       <nav id="nav">
         <ul>
@@ -22,6 +22,7 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="services.html">Services</a></li>
                 <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="booking.html">Book a Service</a></li>
                 <li><a href="contact.html">Contact</a></li>
               </ul>
             </div>
@@ -30,61 +31,69 @@
       </nav>
     </header>
 
-    <!-- Booking Form Section -->
-    <section id="main" class="wrapper style1 special fade-up">
-      <div class="inner">
-        <header class="major">
-          <h2>Book Your Service</h2>
-          <p>Please fill out the form below to schedule a service. Our team will review your request and follow up shortly.</p>
-        </header>
-        <form method="post" action="#" enctype="multipart/form-data">
-          <div class="row gtr-uniform">
-            <div class="col-6 col-12-xsmall">
-              <label for="name">Full Name</label>
-              <input type="text" name="name" id="name" placeholder="John Doe" required />
+    <!-- Booking Form -->
+    <article id="main">
+      <header class="special container">
+        <h2>Book a Service</h2>
+        <p>Schedule your vehicle service with us by filling out the form below. Make sure to upload a clear image of your vehicle.</p>
+      </header>
+
+      <section class="wrapper style5">
+        <div class="inner">
+          <form method="post" action="#" enctype="multipart/form-data">
+            <div class="row gtr-uniform">
+              <div class="col-6 col-12-xsmall">
+                <label for="name">Full Name</label>
+                <input type="text" name="name" id="name" placeholder="John Doe" required />
+              </div>
+              <div class="col-6 col-12-xsmall">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" placeholder="you@example.com" required />
+              </div>
+              <div class="col-12">
+                <label for="service">Select a Service</label>
+                <select name="service" id="service" required>
+                  <option value="">- Choose a service -</option>
+                  <option value="wrap">Vehicle Wrap</option>
+                  <option value="coating">Ceramic Coating</option>
+                  <option value="detailing">Detailing</option>
+                  <option value="upholstery">Upholstery</option>
+                </select>
+              </div>
+              <div class="col-12">
+                <label for="vehicle">Vehicle Make & Model</label>
+                <input type="text" name="vehicle" id="vehicle" placeholder="e.g. Honda Civic 2022" required />
+              </div>
+              <div class="col-12">
+                <label for="photo">Upload Vehicle Photo</label>
+                <input type="file" name="photo" id="photo" accept="image/*" required />
+              </div>
+              <div class="col-12">
+                <label for="notes">Additional Notes</label>
+                <textarea name="notes" id="notes" rows="6" placeholder="Any additional requests or information..."></textarea>
+              </div>
+              <div class="col-12">
+                <ul class="actions">
+                  <li><input type="submit" value="Submit Booking" class="primary" /></li>
+                  <li><input type="reset" value="Reset" /></li>
+                </ul>
+              </div>
             </div>
-            <div class="col-6 col-12-xsmall">
-              <label for="email">Email Address</label>
-              <input type="email" name="email" id="email" placeholder="you@example.com" required />
-            </div>
-            <div class="col-12">
-              <label for="service">Select Service</label>
-              <select name="service" id="service" required>
-                <option value="">- Select -</option>
-                <option value="wrap">Vehicle Wrap</option>
-                <option value="coating">Ceramic Coating</option>
-                <option value="detailing">Detailing</option>
-                <option value="upholstery">Upholstery</option>
-              </select>
-            </div>
-            <div class="col-12">
-              <label for="details">Additional Details</label>
-              <textarea name="details" id="details" rows="6" placeholder="Any specific requests or vehicle notes..."></textarea>
-            </div>
-            <div class="col-12">
-              <label for="photo">Upload Photo of Vehicle</label>
-              <input type="file" name="photo" id="photo" accept="image/*" required />
-            </div>
-            <div class="col-12">
-              <ul class="actions">
-                <li><input type="submit" value="Submit Booking" class="primary" /></li>
-                <li><input type="reset" value="Reset" /></li>
-              </ul>
-            </div>
-          </div>
-        </form>
-      </div>
-    </section>
+          </form>
+        </div>
+      </section>
+    </article>
 
     <!-- Footer -->
     <footer id="footer">
       <ul class="icons">
-        <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
         <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+        <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
         <li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
       </ul>
       <ul class="copyright">
-        <li>&copy; 2025 Creative Auto Garage</li><li>Design adapted from <a href="http://html5up.net">HTML5 UP</a></li>
+        <li>&copy; 2025 Creative Auto Garage</li>
+        <li>Design adapted from <a href="http://html5up.net">HTML5 UP</a></li>
       </ul>
     </footer>
 
