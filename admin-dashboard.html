@@ -1,112 +1,38 @@
+
 <!DOCTYPE HTML>
 <html>
 <head>
   <title>Admin Dashboard - Creative Auto Garage</title>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="assets/css/main.css" />
-  <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-  <style>
-    #searchInput {
-      margin-bottom: 1.5em;
-      padding: 0.5em;
-      width: 100%;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
-    .delete-btn {
-      background-color: #c0392b;
-      color: white;
-      padding: 6px 12px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    .delete-btn:hover {
-      background-color: #e74c3c;
-    }
-  </style>
 </head>
 <body class="is-preload">
   <div id="page-wrapper">
-
-    <!-- Header -->
     <header id="header">
       <h1><a href="index.html">Creative Auto Garage</a></h1>
       <nav id="nav">
         <ul>
-          <li class="special">
-            <a href="#menu" class="menuToggle"><span>Menu</span></a>
-            <div id="menu">
-              <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="booking.html">Booking</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="#" onclick="logout()">Logout</a></li>
-              </ul>
-            </div>
-          </li>
+          <li><a href="#" onclick="logout()">Logout</a></li>
         </ul>
       </nav>
     </header>
-
-    <!-- Main -->
     <article id="main">
-      <header>
-        <h2>Admin Dashboard</h2>
-        <p>View and manage customer bookings</p>
-      </header>
+      <header><h2>Admin Dashboard</h2></header>
       <section class="wrapper style5">
         <div class="inner">
-          <input type="text" id="searchInput" placeholder="Search bookings by name or service...">
-          <div class="table-wrapper">
-            <table id="bookingsTable">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Name</th>
-                  <th>Email</th>
-                  <th>Service</th>
-                  <th>Vehicle Info</th>
-                  <th>Date</th>
-                  <th>Notes</th>
-                  <th>Photo</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                <!-- Booking rows go here -->
-              </tbody>
-            </table>
-          </div>
+          <table id="bookingsTable" border="1" style="width:100%;">
+            <thead>
+              <tr>
+                <th>Name</th><th>Email</th><th>Service</th><th>Vehicle</th><th>Date</th><th>Notes</th><th>Photo</th><th>Status</th><th>Actions</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
         </div>
       </section>
     </article>
-
-    <!-- Footer -->
-    <footer id="footer">
-      <ul class="icons">
-        <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-        <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-        <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-        <li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
-      </ul>
-      <ul class="copyright">
-        <li>&copy; 2025 Creative Auto Garage</li><li>Design adapted from <a href="http://html5up.net">HTML5 UP</a></li>
-      </ul>
-    </footer>
-
   </div>
-
-  <!-- Scripts -->
-  <script src="assets/js/jquery.min.js"></script>
-  <script src="assets/js/jquery.scrollex.min.js"></script>
-  <script src="assets/js/jquery.scrolly.min.js"></script>
-  <script src="assets/js/browser.min.js"></script>
-  <script src="assets/js/breakpoints.min.js"></script>
-  <script src="assets/js/util.js"></script>
-  <script src="assets/js/main.js"></script>
   <script>
     function logout() {
       localStorage.removeItem("isAdmin");
@@ -114,59 +40,35 @@
     }
 
     async function fetchBookings() {
-      try {
-        const response = await fetch("https://creativeautogarage-backend.onrender.com/bookings");
-        const bookings = await response.json();
-        populateTable(bookings);
-      } catch (error) {
-        alert("Error loading bookings.");
-      }
-    }
-
-    function populateTable(bookings) {
+      const response = await fetch("https://creativeautogarage-backend.onrender.com/bookings");
+      const bookings = await response.json();
       const tbody = document.querySelector("#bookingsTable tbody");
       tbody.innerHTML = "";
-      bookings.forEach((booking, index) => {
+      bookings.forEach(booking => {
         const row = document.createElement("tr");
         row.innerHTML = `
-          <td>${index + 1}</td>
           <td>${booking.fullName}</td>
           <td>${booking.email}</td>
           <td>${booking.service}</td>
           <td>${booking.vehicleInfo}</td>
           <td>${booking.preferredDate}</td>
           <td>${booking.notes || ""}</td>
-          <td>${booking.imagePath ? `<a href="https://creativeautogarage-backend.onrender.com/${booking.imagePath}" target="_blank">View</a>` : "N/A"}</td>
-          <td><button class="delete-btn" onclick="deleteBooking('${booking._id}', this)">Delete</button></td>
-        `;
+          <td>${booking.imagePath ? '<a href="https://creativeautogarage-backend.onrender.com/' + booking.imagePath + '" target="_blank">View</a>' : "N/A"}</td>
+          <td>${booking.status}</td>
+          <td>
+            <button onclick="updateStatus('${booking._id}', 'approved')">Approve</button>
+            <button onclick="updateStatus('${booking._id}', 'denied')">Deny</button>
+          </td>`;
         tbody.appendChild(row);
       });
     }
 
-    async function deleteBooking(id, btn) {
-      if (!confirm("Are you sure you want to delete this booking?")) return;
-      try {
-        const response = await fetch(`https://creativeautogarage-backend.onrender.com/bookings/${id}`, {
-          method: "DELETE"
-        });
-        if (response.ok) {
-          btn.closest("tr").remove();
-        } else {
-          alert("Failed to delete booking.");
-        }
-      } catch (error) {
-        alert("Server error while deleting booking.");
-      }
+    async function updateStatus(id, status) {
+      const response = await fetch(`https://creativeautogarage-backend.onrender.com/bookings/${id}/${status}`, { method: 'POST' });
+      const result = await response.json();
+      alert(result.message);
+      fetchBookings();
     }
-
-    document.getElementById("searchInput").addEventListener("input", function () {
-      const value = this.value.toLowerCase();
-      document.querySelectorAll("#bookingsTable tbody tr").forEach(row => {
-        const name = row.cells[1].textContent.toLowerCase();
-        const service = row.cells[3].textContent.toLowerCase();
-        row.style.display = name.includes(value) || service.includes(value) ? "" : "none";
-      });
-    });
 
     fetchBookings();
   </script>
