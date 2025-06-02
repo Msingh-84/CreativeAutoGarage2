@@ -1,126 +1,157 @@
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <title>Booking - Creative Auto Garage</title>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-  <link rel="stylesheet" href="assets/css/main.css" />
-  <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Creative Auto Garage - Booking</title>
+  <link rel="stylesheet" href="styles.css"> <!-- If you have a CSS file -->
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+      background-color: #f8f9fa;
+      color: #333;
+    }
+
+    form {
+      max-width: 600px;
+      margin: auto;
+      padding: 20px;
+      background: white;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      border-radius: 8px;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+
+    button {
+      margin-top: 20px;
+      background-color: #081545;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .confirmation {
+      margin-top: 30px;
+      padding: 16px 24px;
+      background-color: #e0fbe0;
+      border-left: 6px solid #2ecc71;
+      color: #2c662d;
+      font-size: 16px;
+      font-weight: 500;
+      border-radius: 6px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      animation: fadeIn 0.6s ease;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    #fileNameDisplay {
+      margin-top: 6px;
+      font-size: 14px;
+      color: #555;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 </head>
-<body class="is-preload">
-  <div id="page-wrapper">
+<body>
 
-    <!-- Header -->
-    <header id="header">
-      <h1><a href="index.html">Creative Auto Garage</a></h1>
-      <nav id="nav">
-        <ul>
-          <li class="special">
-            <a href="#menu" class="menuToggle"><span>Menu</span></a>
-            <div id="menu">
-              <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="booking.html">Booking</a></li>
-                <li><a href="contact.html">Contact</a></li>
-              </ul>
-            </div>
-          </li>
-        </ul>
-      </nav>
-    </header>
+  <h1>Book a Service</h1>
 
-    <!-- Main -->
-    <article id="main">
-      <header>
-        <h2>Book Your Service</h2>
-        <p><span style="color:red">*</span> indicates a required field</p>
-      </header>
-      <section class="wrapper style5">
-        <div class="inner">
-          <form action="https://creativeautogarage-backend.onrender.com/submit-booking" method="POST" enctype="multipart/form-data">
-            <div class="row gtr-uniform">
-              <div class="col-6 col-12-xsmall">
-                <label for="name">Full Name <span style="color:red">*</span></label>
-                <input type="text" name="name" id="name" required />
-              </div>
-              <div class="col-6 col-12-xsmall">
-                <label for="email">Email <span style="color:red">*</span></label>
-                <input type="email" name="email" id="email" required />
-              </div>
-              <div class="col-12">
-                <label for="service">Service Type <span style="color:red">*</span></label>
-                <select name="service" id="service" required>
-                  <option value="">- Select a Service -</option>
-                  <option value="wraps">Vehicle Wraps</option>
-                  <option value="coating">Ceramic Coating</option>
-                  <option value="detailing">Detailing</option>
-                  <option value="upholstery">Upholstery</option>
-                </select>
-              </div>
-              <div class="col-6 col-12-xsmall">
-                <label for="date">Preferred Date <span style="color:red">*</span></label>
-                <input type="date" name="date" id="date" required />
-              </div>
-              <div class="col-6 col-12-xsmall">
-                <label for="time">Preferred Time <span style="color:red">*</span></label>
-                <input type="time" name="time" id="time" required />
-              </div>
-              <div class="col-12">
-                <label for="vehicleImage">Upload Vehicle Photo <span class="required">*</span></label>
-                <input type="file" id="vehicleImage" name="vehicleImage" accept="image/*" required>
-                <span id="fileNameDisplay" style="margin-left: 10px; font-weight: 500;"></span>
+  <form id="bookingForm" enctype="multipart/form-data">
+    <label for="fullName">Full Name</label>
+    <input type="text" id="fullName" name="fullName" required>
 
-              </div>
-              <div class="col-12">
-                <label for="notes">Additional Notes</label>
-                <textarea name="notes" id="notes" rows="5" placeholder="Include any specific requests or details..."></textarea>
-              </div>
-              <div class="col-12">
-                <ul class="actions">
-                  <li><input type="submit" value="Submit Booking" class="primary" /></li>
-                  <li><input type="reset" value="Reset" /></li>
-                </ul>
-              </div>
-            </div>
-          </form>
-        </div>
-      </section>
-    </article>
+    <label for="email">Email Address</label>
+    <input type="email" id="email" name="email" required>
 
-    <!-- Footer -->
-    <footer id="footer">
-      <ul class="icons">
-        <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-        <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-        <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-        <li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
-      </ul>
-      <ul class="copyright">
-        <li>&copy; 2025 Creative Auto Garage</li><li>Design adapted from <a href="http://html5up.net">HTML5 UP</a></li>
-      </ul>
-    </footer>
+    <label for="service">Service Type</label>
+    <select id="service" name="service" required>
+      <option value="">--Select Service--</option>
+      <option value="Oil Change">Oil Change</option>
+      <option value="Brake Inspection">Brake Inspection</option>
+      <option value="General Maintenance">General Maintenance</option>
+    </select>
 
+    <label for="vehicleInfo">Vehicle Information</label>
+    <input type="text" id="vehicleInfo" name="vehicleInfo" required>
+
+    <label for="preferredDate">Preferred Date</label>
+    <input type="date" id="preferredDate" name="preferredDate" required>
+
+    <label for="notes">Additional Notes</label>
+    <textarea id="notes" name="notes" rows="4"></textarea>
+
+    <label for="vehiclePhoto">Upload Vehicle Photo</label>
+    <input type="file" id="vehiclePhoto" name="vehicleImage" accept="image/*" required>
+    <div id="fileNameDisplay"></div>
+
+    <button type="submit">Submit Booking</button>
+  </form>
+
+  <div id="confirmationMessage" class="confirmation hidden">
+    ✅ Thank you! Your booking has been submitted. We'll contact you soon.
   </div>
 
-  <!-- Scripts -->
-  <script src="assets/js/jquery.min.js"></script>
-  <script src="assets/js/jquery.scrollex.min.js"></script>
-  <script src="assets/js/jquery.scrolly.min.js"></script>
-  <script src="assets/js/browser.min.js"></script>
-  <script src="assets/js/breakpoints.min.js"></script>
-  <script src="assets/js/util.js"></script>
-  <script src="assets/js/main.js"></script>
   <script>
-  document.getElementById('vehicleImage').addEventListener('change', function () {
-    const fileNameSpan = document.getElementById('fileNameDisplay');
-    if (this.files && this.files.length > 0) {
-      fileNameSpan.textContent = this.files[0].name;
-    } else {
-      fileNameSpan.textContent = '';
-    }
-  });
-</script>
+    // Show file name when image is selected
+    document.getElementById('vehiclePhoto').addEventListener('change', function () {
+      const fileNameSpan = document.getElementById('fileNameDisplay');
+      if (this.files && this.files.length > 0) {
+        fileNameSpan.textContent = this.files[0].name;
+      } else {
+        fileNameSpan.textContent = '';
+      }
+    });
+
+    // Handle form submission
+    document.getElementById('bookingForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const formData = new FormData(this);
+
+      const response = await fetch('/submit-booking', {
+        method: 'POST',
+        body: formData
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        document.getElementById('confirmationMessage').classList.remove('hidden');
+        this.reset();
+        document.getElementById('fileNameDisplay').textContent = '';
+      } else {
+        alert('Something went wrong. Please try again.');
+      }
+    });
+  </script>
 
 </body>
 </html>
