@@ -22,8 +22,8 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="services.html">Services</a></li>
                 <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="contact.html">Contact</a></li>
                 <li><a href="booking.html">Booking</a></li>
+                <li><a href="contact.html">Contact</a></li>
               </ul>
             </div>
           </li>
@@ -32,47 +32,62 @@
     </header>
 
     <!-- Booking Form -->
-    <article id="main">
-      <header class="special">
-        <h2>Book an Appointment</h2>
-        <p>Secure your spot for a vehicle transformation with Creative Auto Garage</p>
-      </header>
-      <section class="wrapper style5">
-        <div class="inner">
-          <form method="post" action="#" enctype="multipart/form-data">
-            <div class="row gtr-uniform">
-              <div class="col-6 col-12-xsmall">
-                <input type="text" name="name" id="name" placeholder="Full Name" required />
-              </div>
-              <div class="col-6 col-12-xsmall">
-                <input type="email" name="email" id="email" placeholder="Email Address" required />
-              </div>
-              <div class="col-6 col-12-xsmall">
-                <input type="text" name="phone" id="phone" placeholder="Phone Number" required />
-              </div>
-              <div class="col-6 col-12-xsmall">
-                <input type="text" name="vehicle" id="vehicle" placeholder="Vehicle Make & Model" required />
-              </div>
-              <div class="col-12">
-                <input type="file" name="vehiclePhoto" id="vehiclePhoto" accept="image/*" required />
-              </div>
-              <div class="col-12">
-                <input type="date" name="appointment" id="appointment" placeholder="Preferred Appointment Date" required />
-              </div>
-              <div class="col-12">
-                <textarea name="message" id="message" placeholder="Additional Details" rows="6"></textarea>
-              </div>
-              <div class="col-12">
-                <ul class="actions">
-                  <li><input type="submit" value="Submit Booking" class="primary" /></li>
-                  <li><input type="reset" value="Reset" /></li>
-                </ul>
-              </div>
+    <section id="main" class="wrapper style5">
+      <div class="inner">
+        <header class="major">
+          <h2>Book Your Appointment</h2>
+          <p>Fill out the form below to schedule a service. Please provide accurate details for a seamless experience.</p>
+        </header>
+
+        <form method="post" action="#" enctype="multipart/form-data">
+          <div class="row gtr-uniform">
+
+            <div class="col-6 col-12-xsmall">
+              <label for="name">Full Name</label>
+              <input type="text" name="name" id="name" placeholder="Enter your full name" required />
             </div>
-          </form>
-        </div>
-      </section>
-    </article>
+
+            <div class="col-6 col-12-xsmall">
+              <label for="email">Email Address</label>
+              <input type="email" name="email" id="email" placeholder="Enter your email" required />
+            </div>
+
+            <div class="col-6 col-12-xsmall">
+              <label for="phone">Phone Number</label>
+              <input type="tel" name="phone" id="phone" placeholder="Enter your contact number" required />
+            </div>
+
+            <div class="col-6 col-12-xsmall">
+              <label for="date">Preferred Service Date</label>
+              <input type="date" name="date" id="date" required />
+            </div>
+
+            <div class="col-12">
+              <label for="vehicle">Vehicle Information</label>
+              <input type="text" name="vehicle" id="vehicle" placeholder="Make, Model, Year (e.g. Tesla Model 3, 2022)" required />
+            </div>
+
+            <div class="col-12">
+              <label for="photo">Upload Vehicle Photo</label>
+              <input type="file" name="photo" id="photo" accept="image/*" required />
+            </div>
+
+            <div class="col-12">
+              <label for="message">Additional Details or Service Requests</label>
+              <textarea name="message" id="message" rows="6" placeholder="Describe any special instructions or details about your vehicle..."></textarea>
+            </div>
+
+            <div class="col-12">
+              <ul class="actions">
+                <li><input type="submit" value="Submit Booking" class="primary" /></li>
+                <li><input type="reset" value="Reset Form" /></li>
+              </ul>
+            </div>
+
+          </div>
+        </form>
+      </div>
+    </section>
 
     <!-- Footer -->
     <footer id="footer">
@@ -80,7 +95,6 @@
         <li>&copy; 2025 Creative Auto Garage</li><li>Design adapted from <a href="http://html5up.net">HTML5 UP</a></li>
       </ul>
     </footer>
-
   </div>
 
   <!-- Scripts -->
