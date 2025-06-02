@@ -39,7 +39,7 @@
       </header>
       <section class="wrapper style5">
         <div class="inner">
-          <form action="https://creativeautogarage-backend.onrender.com/submit-booking" method="POST" enctype="multipart/form-data">
+          <form id="bookingForm" action="https://creativeautogarage-backend.onrender.com/submit-booking" method="POST" enctype="multipart/form-data">
             <div class="row gtr-uniform">
               <div class="col-6 col-12-xsmall">
                 <label for="name">Full Name <span style="color:red">*</span></label>
@@ -60,20 +60,17 @@
                 </select>
               </div>
               <div class="col-6 col-12-xsmall">
-              <label for="date">Preferred Date <span style="color:red">*</span></label>
-              <input type="date" name="date" id="date" required
-                     style="background-color: #fff; color: #000; border: 1px solid #ccc; padding: 8px; border-radius: 4px;" />
-            </div>
-            <div class="col-6 col-12-xsmall">
-              <label for="time">Preferred Time <span style="color:red">*</span></label>
-              <input type="time" name="time" id="time" required
-                     style="background-color: #fff; color: #000; border: 1px solid #ccc; padding: 8px; border-radius: 4px;" />
-            </div>
+                <label for="date">Preferred Date <span style="color:red">*</span></label>
+                <input type="date" name="date" id="date" required style="background-color: #fff; color: #000; border: 1px solid #ccc; padding: 8px; border-radius: 4px;" />
+              </div>
+              <div class="col-6 col-12-xsmall">
+                <label for="time">Preferred Time <span style="color:red">*</span></label>
+                <input type="time" name="time" id="time" required style="background-color: #fff; color: #000; border: 1px solid #ccc; padding: 8px; border-radius: 4px;" />
+              </div>
               <div class="col-12">
                 <label for="vehicleImage">Upload Vehicle Photo <span class="required">*</span></label>
                 <input type="file" id="vehicleImage" name="vehicleImage" accept="image/*" required>
                 <span id="fileNameDisplay" style="margin-left: 10px; font-weight: 500;"></span>
-
               </div>
               <div class="col-12">
                 <label for="notes">Additional Notes</label>
@@ -87,6 +84,11 @@
               </div>
             </div>
           </form>
+
+          <div id="confirmationMessage" class="hidden" style="margin-top: 30px; padding: 16px 24px; background-color: #e0fbe0; border-left: 6px solid #2ecc71; color: #2c662d; font-size: 16px; font-weight: 500; border-radius: 6px; animation: fadeIn 0.6s ease;">
+            ✅ Thank you! Your booking has been submitted. We'll contact you soon.
+          </div>
+
         </div>
       </section>
     </article>
@@ -115,15 +117,36 @@
   <script src="assets/js/util.js"></script>
   <script src="assets/js/main.js"></script>
   <script>
-  document.getElementById('vehicleImage').addEventListener('change', function () {
-    const fileNameSpan = document.getElementById('fileNameDisplay');
-    if (this.files && this.files.length > 0) {
-      fileNameSpan.textContent = this.files[0].name;
-    } else {
-      fileNameSpan.textContent = '';
-    }
-  });
-</script>
+    document.getElementById('vehicleImage').addEventListener('change', function () {
+      const fileNameSpan = document.getElementById('fileNameDisplay');
+      if (this.files && this.files.length > 0) {
+        fileNameSpan.textContent = this.files[0].name;
+      } else {
+        fileNameSpan.textContent = '';
+      }
+    });
+
+    document.getElementById('bookingForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const formData = new FormData(this);
+
+      const response = await fetch(this.action, {
+        method: 'POST',
+        body: formData
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        document.getElementById('confirmationMessage').classList.remove('hidden');
+        this.reset();
+        document.getElementById('fileNameDisplay').textContent = '';
+      } else {
+        alert('Something went wrong. Please try again.');
+      }
+    });
+  </script>
 
 </body>
 </html>
