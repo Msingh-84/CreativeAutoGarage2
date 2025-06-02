@@ -6,24 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
   <link rel="stylesheet" href="assets/css/main.css" />
   <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-  <style>
-    .required-label::after {
-      content: " *";
-      color: red;
-    }
-    .note {
-      color: #888;
-      font-size: 0.9em;
-      margin-top: -1em;
-      margin-bottom: 1.5em;
-    }
-  </style>
 </head>
-<body class="is-preload">
+<body class="landing is-preload">
   <div id="page-wrapper">
 
     <!-- Header -->
-    <header id="header">
+    <header id="header" class="alt">
       <h1><a href="index.html">Creative Auto Garage</a></h1>
       <nav id="nav">
         <ul>
@@ -34,7 +22,6 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="services.html">Services</a></li>
                 <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="booking.html">Booking</a></li>
                 <li><a href="contact.html">Contact</a></li>
               </ul>
             </div>
@@ -43,49 +30,52 @@
       </nav>
     </header>
 
-    <!-- Main -->
+    <!-- Booking Section -->
     <section class="wrapper style1 special">
       <div class="inner">
         <header class="major">
-          <h2>Book Your Service</h2>
-          <p>Please fill out the form below to request a service appointment. Fields marked with a red asterisk (*) are required.</p>
-          <p class="note">* Required field</p>
+          <h2>Book a Service</h2>
+          <p><span style="color: red;">*</span> Required fields</p>
         </header>
         <form method="post" action="#" enctype="multipart/form-data">
           <div class="row gtr-uniform">
             <div class="col-6 col-12-xsmall">
-              <label for="name" class="required-label">Full Name</label>
+              <label for="name">Full Name <span style="color: red;">*</span></label>
               <input type="text" name="name" id="name" placeholder="Enter your full name" required />
             </div>
             <div class="col-6 col-12-xsmall">
-              <label for="email" class="required-label">Email Address</label>
+              <label for="email">Email <span style="color: red;">*</span></label>
               <input type="email" name="email" id="email" placeholder="Enter your email" required />
             </div>
             <div class="col-12">
-              <label for="service" class="required-label">Service Requested</label>
+              <label for="vehicle">Vehicle Make & Model <span style="color: red;">*</span></label>
+              <input type="text" name="vehicle" id="vehicle" placeholder="e.g., Tesla Model Y, Honda Civic" required />
+            </div>
+            <div class="col-12">
+              <label for="service">Select Service <span style="color: red;">*</span></label>
               <select name="service" id="service" required>
-                <option value="">- Select a service -</option>
+                <option value="">- Select -</option>
                 <option value="wrap">Vehicle Wrap</option>
-                <option value="ceramic">Ceramic Coating</option>
+                <option value="coating">Ceramic Coating</option>
                 <option value="detailing">Detailing</option>
                 <option value="upholstery">Upholstery</option>
               </select>
             </div>
             <div class="col-12">
-              <label for="date" class="required-label">Preferred Appointment Date</label>
+              <label for="date">Preferred Date <span style="color: red;">*</span></label>
               <input type="date" name="date" id="date" required />
             </div>
             <div class="col-12">
-              <label for="image" class="required-label">Upload Vehicle Photo</label>
-              <input type="file" name="image" id="image" accept="image/*" required />
+              <label for="photo">Upload Vehicle Photo <span style="color: red;">*</span></label>
+              <input type="file" name="photo" id="photo" accept="image/*" required />
             </div>
             <div class="col-12">
               <label for="notes">Additional Notes</label>
-              <textarea name="notes" id="notes" placeholder="Anything else you'd like us to know?" rows="4"></textarea>
+              <textarea name="notes" id="notes" placeholder="Let us know any extra details..." rows="4"></textarea>
             </div>
             <div class="col-12">
               <ul class="actions">
-                <li><input type="submit" value="Submit Booking Request" class="primary" /></li>
+                <li><input type="submit" value="Submit Booking" class="primary" /></li>
                 <li><input type="reset" value="Reset" /></li>
               </ul>
             </div>
